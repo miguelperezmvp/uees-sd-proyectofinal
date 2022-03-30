@@ -3,7 +3,7 @@
 
 _En este proyecto, implementaremos un sistema distribuido, que permitirá hacer una Escritura y lectura de informacion proporcionada por un usuario, en el que el sistema cuenta con nodos que repliquen la data como respaldo. Se utilizó lenguaje de progamación Java y herramienta de base de datos se utilizó un archivo txt donde se guardaria cada dato del CLiente con un formato de log._
 
-## Obejetivos 📌
+## Objetivos 📌
 _Este proyecto tiene como objetivo ejercitar la creación de aplicaciones distribuidas que permitan la transferencia y procesamiento de información entre varios nodos con su respectiva replicación, donde se respaldan tambien de un Log para el almacenamiento de la data en .json. Adicionalmente se ponen en práctica otros conceptos como replicacion, escalabilidad de aplicaciones, rendimiento, etc._
 
 ## Comenzando 🚀
