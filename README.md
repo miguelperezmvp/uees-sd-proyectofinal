@@ -17,6 +17,22 @@ Maquinas virtuales deben contar con Ubuntu server o con interfaz.
 La maquina virtual debe de contar con una configuración de red de 'Adaptador Puente'.
 ```
 
+## Funcionamiento y Logica ⚙️
+
+_Para comenzar El TCP server se conectara al puerto 9000, el cual La primera vez que se ejecuta el programa, detecta si está bierto el puerto 9000, si no, se ejecuta como líder;si si, se ejecuta como seguidor._
+_Con la ejecucion de Main se abre un servidor en el puerto 5000 para manejar una api, es decir, cada nodo tiene su propia api el cual manda instrucciones CRUD (LIMITADO PARA ALGUNOS NODOS)._
+_Si ejecutamos un nuevo Main, este detectará que el puerto 5000 ya está ocupado y abrirá en el siguiente. Y así sucesivamente con cada nuevo nodo_
+
+Líder y seguidores están conectados a través de un tcp server/client, cuando se ejecuta una función en la api, este llega a la clase Api la cual lo maneja y responde en base a la función que se haya mandado (CRUD)
+
+_Si se decide hacer un post, se lo pasa como json, el cual lo recibe el líder y lo guarda en un log como "POST {json}". Luego el servidor envía un mensaje en bytes a los clientes, los cuales haran el g en su propio log, a su vez que manejaran su propio diccionario en dónde se van agregando clientes una vez se realiza el post. De esta manera a cada nodo seguidor se le podrá hacer una consulta GET de algún cliente._
+```
+Nodo lider: POST, PUT, GET, DELETE
+Nodo seguidor: GET,PUT
+```
+
+
+
 ### Instalación 🔧
 
 _Dependecias que se debe instalar desde un principio para la ejecucion del proyecto_
@@ -32,9 +48,10 @@ sudo apt intall ipconfig
 
 _Una vez instalado las dependencias procederemos con las ejecuciones_
 
+
 ## Ejecutando las pruebas ⚙️
 
-_Tendremos que clonar el repositorio del codigo realizado en nuestra maquina vitual, el cual en ese ejecutaremos el .properties para poder cambiar los parametros de ejecuion del Rabitt. Accedemos al carpeta donde esta ubicado el .properties, y una vez en la directorio, accedemos con un nano para cambiar parametros.
+Tendremos que clonar el repositorio del codigo realizado en nuestra maquina vitual, el cual en ese ejecutaremos el .properties para poder cambiar los parametros de ejecuion del Rabitt. Accedemos al carpeta donde esta ubicado el .properties, y una vez en la directorio, accedemos con un nano para cambiar parametros.
 ```
 git clone https://github.com/miguelperezmvp/uees-sd-proyectofinal.git      // git clone "link repositorio".git
 ```
@@ -47,43 +64,8 @@ Terminal de MAIN
 javac -cp json-2014017.jar *.java
 java main
 ```
-_Con la ejecucion de Main el Api se conecta al puerto 9000 el cual manda instucciones de CRUD hacia el lider._
-_El TCP server se conectara al puerto 5000, el cual siendo el primero este de proclama como lider, apto para escrituras y lecturas********._
 
 
-### Acceder a RabbitMQ 🔩
-
-_Se puede acceder al RabbitMQ en la propia maquina virtual con interfaz desde el navegador_
-
-```
-localhost:15672       //Puerto de RabbitMQ
-```
-_Tambien se puede acceder desde el navegador de tu propia computadora por medio del ip que tiene y el puerto en el corre RabbitMQ el cual es 15672. En caso personal es http://192.168.100.131:15672/ _
-
-_Una vez dentro de este, te vas al apartado de Queues en el que puedes observar las tareas enviadas, en un cola,esperando que sean consumidas por el Consumidor._
-
-
-
-## Ejecutando las pruebas de CONSUMIDOR⚙️
-_Apenas es ejecutado el Producer, la informacion llegaria al Consumer por medio de que ambos estan conectados al Rabbit_
-_La funcion del Consumer espera el mensaje .json, a lo que lee las firmas(id) de los archivos leidos en producer_
-_El consumidor los guarda en .txt con las firmas para indicar en caso de que quieran mandar la misma informacion, decir que ya fue procesada. De esta manera se realizo' la persistencia del programa._
-_Se leen los .json y junta las palabras en un archivo de texto junto a sus frecuencias para luego mostrarlas en forma descendente y las primeras 10.
-
-```
-HOLA 4
-archivo 3
-bisco 3
-casa 2
-palma 2
-daniel 1
-computadora 1
-palabra 1
-rabbit 1
-guarda 1
-
-```
-_A su vez, cuando el consumidor capta los mensajes del producer, se eliminan de la cola de mesnajes del Rabbit._
 ## Despliegue 📦
 
 _Tener en cuenta las configuraciones de la maquina virtual y las dependencias descargadas._
