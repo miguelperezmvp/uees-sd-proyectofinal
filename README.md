@@ -10,13 +10,6 @@ _Este proyecto tiene como objetivo ejercitar la creación de aplicaciones distri
 
 _Se necesitaran como requisito crear una maquina virtual para que se conserve la idea de implementar los sistemas distribuidos._
 
-### Pre-requisitos para Productor 📋
-
-```
-Maquinas virtuales deben contar con Ubuntu server o con interfaz.
-La maquina virtual debe de contar con una configuración de red de 'Adaptador Puente'.
-```
-
 ## Funcionamiento y Logica ⚙️
 
 _Para comenzar El TCP server se conectara al puerto 9000, el cual La primera vez que se ejecuta el programa, detecta si está bierto el puerto 9000, si no, se ejecuta como líder;si si, se ejecuta como seguidor._
@@ -31,6 +24,12 @@ Nodo lider: POST, PUT, GET, DELETE
 Nodo seguidor: GET,PUT
 ```
 
+### Pre-requisitos para Productor 📋
+
+```
+Maquinas virtuales deben contar con Ubuntu server o con interfaz.
+La maquina virtual debe de contar con una configuración de red de 'Adaptador Puente'.
+```
 
 
 ### Instalación 🔧
