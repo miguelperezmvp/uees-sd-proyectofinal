@@ -1,5 +1,4 @@
-# Proyecto Final del Segundo Parcial
-# Representación de Modelo Lider-Seguidor 
+# Proyecto Representación de Modelo Lider-Seguidor en Sistemas Distribuidos
 
 _En este proyecto, implementaremos un sistema distribuido, que permitirá hacer una Escritura y lectura de informacion proporcionada por un usuario, en el que el sistema cuenta con nodos que repliquen la data como respaldo. Se utilizó lenguaje de progamación Java y herramienta de base de datos se utilizó un archivo txt donde se guardaria cada dato del CLiente con un formato de log._
 
